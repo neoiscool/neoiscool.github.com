@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Profile</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <meta name="description" content="User profile page">
+  <meta charset="UTF-8">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="profile-container">
-        <h1>User Profile</h1>
-        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
-        <h4>Name: John Doe</h4>
-        <p class="bio">Hey there, people who have laundered money for their family to keep a meth empire afloat! But was it really for your family, or just an artifact of your own greed and desperate need for validation in a cold, uncaring universe? Is your life a lie built on the delusion that you can control your fate, or are you merely a pawn in a cosmic game with no winners? ANYWAY im neo.</p>
-        
-        <input type="text" placeholder="Update status..." class="status-input">
-        <button class="update-btn">Update Status</button>
+  <h1>Latest News</h1>
+  <div id="blog-list">Loading...</div>
 
-        <h4>Contact Info</h4>
-        <ul>
-            <li>Email: <a href="mailto:john.doe@example.com" class="email-link">john.doe@example.com</a></li>
-            <li>Youtube: <a href="https://www.youtube.com/channel/UCHDxWsVlZNhDpIClR-Biy0A" class="website-link">My youtube</a></li>
-        </ul>
-    </div>
+  <script>
+    async function loadPosts() {
+      const files = ["posts/post1.json", "posts/post2.json"]; // List all post filenames
 
-    <script src="script.lua"></script>
+      const container = document.getElementById("blog-list");
+      container.innerHTML = "";
+
+      for (const file of files) {
+        const res = await fetch(file);
+        const post = await res.json();
+
+        const postElement = document.createElement("div");
+        postElement.className = "post";
+
+        postElement.innerHTML = `
+          <h2><a href="post.html?src=${encodeURIComponent(file)}">${post.title}</a></h2>
+          <p><strong>Date:</strong> ${post.date} | <strong>Author:</strong> ${post.author}</p>
+        `;
+
+        container.appendChild(postElement);
+      }
+    }
+
+    loadPosts();
+  </script>
 </body>
 </html>
