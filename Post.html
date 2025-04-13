@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Blog Post</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -15,16 +15,20 @@
 
       if (!file) return document.getElementById("post").innerText = "Post not found.";
 
-      const res = await fetch(file);
-      const post = await res.json();
+      try {
+        const res = await fetch(file);
+        const post = await res.json();
 
-      document.title = post.title;
-      document.getElementById("post").innerHTML = `
-        <h1>${post.title}</h1>
-        <p><strong>Date:</strong> ${post.date} | <strong>Author:</strong> ${post.author}</p>
-        <hr>
-        ${post.content}
-      `;
+        document.title = post.title;
+        document.getElementById("post").innerHTML = `
+          <h1>${post.title}</h1>
+          <p class="meta">By ${post.author} on ${post.date}</p>
+          <hr>
+          ${post.content}
+        `;
+      } catch (err) {
+        document.getElementById("post").innerText = "Failed to load post.";
+      }
     }
 
     loadPost();
