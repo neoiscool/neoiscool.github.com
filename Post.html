@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Post</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="post">Loading post...</div>
+
+  <script>
+    async function loadPost() {
+      const params = new URLSearchParams(window.location.search);
+      const file = params.get("src");
+
+      if (!file) return document.getElementById("post").innerText = "Post not found.";
+
+      const res = await fetch(file);
+      const post = await res.json();
+
+      document.title = post.title;
+      document.getElementById("post").innerHTML = `
+        <h1>${post.title}</h1>
+        <p><strong>Date:</strong> ${post.date} | <strong>Author:</strong> ${post.author}</p>
+        <hr>
+        ${post.content}
+      `;
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>
