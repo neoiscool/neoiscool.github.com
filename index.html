@@ -1,34 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Blog</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News & Blog</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Latest News</h1>
-  <div id="blog-list">Loading...</div>
+  <header>
+    <h1>My News & Blog Site</h1>
+    <p>Latest updates, stories, and announcements</p>
+  </header>
+
+  <main id="blog-list">
+    <p>Loading posts...</p>
+  </main>
+
+  <footer>
+    <p>© 2025 My Blog</p>
+  </footer>
 
   <script>
-    async function loadPosts() {
-      const files = ["posts/post1.json", "posts/post2.json"]; // List all post filenames
+    const files = [
+      "posts/post1.json",
+      "posts/post2.json"
+    ];
 
+    async function loadPosts() {
       const container = document.getElementById("blog-list");
-      container.innerHTML = "";
+      container.innerHTML = ""; // Clear loading message
 
       for (const file of files) {
-        const res = await fetch(file);
-        const post = await res.json();
+        try {
+          const res = await fetch(file);
+          const post = await res.json();
 
-        const postElement = document.createElement("div");
-        postElement.className = "post";
+          const postElement = document.createElement("div");
+          postElement.className = "post";
 
-        postElement.innerHTML = `
-          <h2><a href="post.html?src=${encodeURIComponent(file)}">${post.title}</a></h2>
-          <p><strong>Date:</strong> ${post.date} | <strong>Author:</strong> ${post.author}</p>
-        `;
+          postElement.innerHTML = `
+            <h2><a href="post.html?src=${encodeURIComponent(file)}">${post.title}</a></h2>
+            <p class="meta">By ${post.author} on ${post.date}</p>
+            <p>${post.content.substring(0, 150)}... <a href="post.html?src=${encodeURIComponent(file)}">Read more</a></p>
+          `;
 
-        container.appendChild(postElement);
+          container.appendChild(postElement);
+        } catch (err) {
+          console.error("Error loading:", file, err);
+        }
       }
     }
 
